@@ -1,0 +1,26 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <div class="row">
+            <h1>Edit Comment</h1>
+            <div class="form-block">
+                <form action="/sites/<%= site_id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
+                    <div class="form-group">
+                        <input class="form-control" type="text" value="<%= comment.text %>" name="comment[text]">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-medium btn-default btn-block">Submit</button>
+                    </div>
+                </form>
+                
+                 <form action="/sites/<%= site_id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                    <div class="form group">
+                        <button class="form-control btn btn-small btn-danger">Delete Comment</button>
+                    </div>
+                </form>
+                <hr>
+                <a class= "form-control btn btn-small btn-info" href="/sites/<%= site_id %>">Back</a>
+            </div>
+    </div>
+</div>
+<% include ../partials/footer %>

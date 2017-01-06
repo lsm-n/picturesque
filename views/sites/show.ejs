@@ -1,0 +1,89 @@
+<% include ../partials/header %>
+
+<div class="container">
+    
+    <div class="row">
+        <!--SIDE BAR-->
+        <div class="col-md-3">
+            <p class="lead">Sites</p>
+            <a class="btn btn-success btn-sm " href="/sites/<%= site._id %>/comments/new">Leave a Review</a>
+            <a class="btn btn-success btn-sm" href="/sites/<%= site._id %>/newphoto">Add Photos</a>
+        </div>
+        
+        <!--MAIN CONTENT-->
+        <div class="col-md-9">
+            <div class="thumbnail">
+                
+                <!--SLIDESHOW-->
+                
+                <div id="slideshow" class="carousel slide" data-ride="carousel">
+                    
+                  <!-- Wrapper for slides -->
+                  <div class="carousel-inner">
+                    <div class="item active">
+                      <img src= "<%= site.photos[0].link %>" class="img-responsive img-fluid">
+                      <div class="carousel-caption"><h3><%= site.photos[0].caption %></h3></div>
+                    </div>
+                      
+                    <% for(var i = 1; i < site.photos.length; i++) { %>
+                      <div class="item">
+                        <img src= <%= site.photos[i].link %>>
+                        <div class="carousel-caption"><h3><%= site.photos[i].caption %></h3></div>
+                      </div>
+                    <% } %>
+                    
+                                <!-- CONTROLS -->
+                <a class="left carousel-control" href="#slideshow" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                 </a>
+                 <a class="right carousel-control" href="#slideshow" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                 </a>
+                </div>
+                
+
+                
+                
+                <!--CAPTION-->
+                <div class="caption">
+                    <h4 class="pull-right">$10.00/night</h4>
+                    <h4><a><%= site.name %></a></h4>
+                    <div class="pull-right">
+
+                    </div>
+                    <em><h5>Submitted By: <a href="/user/<%= site.author.id %>"><%= site.author.username %></a> </h5></em>
+    
+                    
+                    <% if(currentUser && site.author.id.equals(currentUser._id)) { %>
+                        <a class="btn btn-warning btn-sm" href="/sites/<%= site._id %>/edit">Edit Site</a>
+                    <% } %>
+                </div>
+                
+
+            </div>
+            
+            <div class="well">
+                <% site.comments.forEach(function(comment) { %>
+                   <div class="row comment">
+                       <div class="col-md-12">
+                        <strong><a href="/user/<%= comment.author.id %>"><%= comment.author.username %></a></strong>
+                        <span class="pull-right">2 days ago</span>
+                        <p>
+                          <%= comment.text %>
+                        </p>
+                        <% if(currentUser && comment.author.id.equals(currentUser._id)) { %>
+                            <a class ="editcomment pull-right" href="/sites/<%= site._id %>/comments/<%= comment._id %>/edit">Edit</a>
+                         <% } %>
+                       </div>
+                   </div>
+               <% }) %>
+           </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<% include ../partials/footer %>

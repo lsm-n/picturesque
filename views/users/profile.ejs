@@ -1,0 +1,38 @@
+<% include ../partials/header %>
+
+<div class="container">
+    
+
+    
+    <div class="row">
+            <!--SIDEBAR-->
+            
+        <div class="col-md-4">
+            <h1><%= user.username %></h1>
+            <img class="img-thumbnail" src="<%= user.profilePicture %>"> <hr>
+            <p><%= user.description %></p>
+            
+            <% if(currentUser && user._id.equals(currentUser._id)) { %>
+                <a class="btn btn-warning btn-sm" href="/user/<%= user._id %>/edit">Edit Site</a>
+            <% } %>
+            
+        </div>
+
+        <div class="col-md-8">
+            
+                <% photos.forEach(function(photo) { %>
+                    <div class="thumbnail">
+                        <img src="<%= photo.link %>">
+                        <div class="thumbnail-caption"><%= photo.caption %></div>
+                    </div>
+                <% }) %>
+
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<% include ../partials/footer %>

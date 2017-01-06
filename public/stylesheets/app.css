@@ -1,0 +1,49 @@
+h1 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+.list-group-item:hover {
+    background-color: #DDD;
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.well {
+    padding: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.comment {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.comment:nth-of-type(2n) {
+    background-color: #C8C8C8;
+}
+
+.editcomment {
+    font-size: 11px;
+}
+
+p {
+    margin: 0px;
+}
+
+.form-block {
+    width: 30%; 
+    margin: 25px auto;
+}
+
+.nav.navbar-nav.navbar-right li span a{
+    color: pink;
+    font-size: 20px;
+}
+

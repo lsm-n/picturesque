@@ -1,0 +1,32 @@
+<% include ../partials/header %>
+
+<div class="container">
+    <header class="jumbotron">
+        <h1>Welcome to Picturesque!</h1>
+        <p>Find a location for your next photoshoot</p>
+        <p>
+            <a class="btn btn-primary" href="/sites/new">Add New Campground</a>
+        </p>
+    </header>
+    
+    <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+        <div class="col-lg-12">
+            <h3>Most Popular Sites</h3>
+        </div>
+        
+        <% for (var i = 0; i < sites.length; i++) { %>
+            <div class= "col-md-3 col-sm-6">
+                <div class="thumbnail">
+                    <img src="<%= sites[i].photos[0].link %>">
+                    <div class="caption"><%= sites[i].name %></div>
+                    <p>
+                        <a href="/sites/<%= sites[i]._id %>" class="btn btn-primary btn-sm">More Info</a>
+                    </p>
+                </div>
+            </div>
+        <% } %>
+            
+    </div>
+</div>
+
+<% include ../partials/footer %>
