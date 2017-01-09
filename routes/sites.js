@@ -52,7 +52,6 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
                 site.photos.push(photo);
                 
                 site.scores.push(score);
-                console.log(site.rating);
                 
                 site.save();
                 
@@ -109,6 +108,14 @@ router.put("/:id/rate", middleware.isLoggedIn, function (req, res) {
             console.log(err);
         } else {
             site.scores.push(score);
+            
+            // avgs. new score into overall rating
+            var total = 0;
+            for (var i = 0; i < site.scores.length; i++) {
+               total = total + site.scores[i]; 
+            }
+            site.rating = total/site.scores.length;
+            
             site.save();
             
             req.flash("success", "Your rating of " + site.name + " has been saved");
