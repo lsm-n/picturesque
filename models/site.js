@@ -3,6 +3,8 @@ var mongoose = require("mongoose");
 var siteSchema = new mongoose.Schema({
     name: String,
     description: String,
+    rating: Number,
+    scores: [Number],
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
@@ -10,7 +12,7 @@ var siteSchema = new mongoose.Schema({
         },
         username: String
     },
-    photos: [ // photos pr
+    photos: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Photo"

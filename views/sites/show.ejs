@@ -8,6 +8,19 @@
             <p class="lead">Sites</p>
             <a class="btn btn-success btn-sm " href="/sites/<%= site._id %>/comments/new">Leave a Review</a>
             <a class="btn btn-success btn-sm" href="/sites/<%= site._id %>/newphoto">Add Photos</a>
+            <br><br>
+            <p><%= site.rating %></p>
+            
+            <form action="/sites/<%= site._id %>/rate?_method=PUT" method="POST">
+              <input type="radio" name="score" value="1"> 1
+              <input type="radio" name="score" value="2"> 2
+              <input type="radio" name="score" value="3"> 3
+              <input type="radio" name="score" value="4"> 4
+              <input type="radio" name="score" value="5"> 5
+              <br>
+              <button class = "btn btn-success btn-sm">Rate Site</button>
+            </form>
+
         </div>
         
         <!--MAIN CONTENT-->

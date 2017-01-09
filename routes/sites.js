@@ -26,11 +26,13 @@ router.get("/new", middleware.isLoggedIn, function(req, res) {
 router.post("/", middleware.isLoggedIn, function(req, res) {
    var name = req.body.name;
    var description = req.body.description;
+   var rating = req.body.score; //when site is first creating, rating is the initial score
+   var score = req.body.score;
    var author = {
                 id: req.user.id,
                 username: req.user.username
             };
-   var newSite = {name: name, description: description, author: author};
+   var newSite = {name: name, description: description, rating: rating, author: author};
    
    Site.create(newSite, function(err, site){
       if (err) {
@@ -48,6 +50,10 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
                     
                 photo.save();
                 site.photos.push(photo);
+                
+                site.scores.push(score);
+                console.log(site.rating);
+                
                 site.save();
                 
                 res.redirect("/sites");
@@ -88,6 +94,24 @@ router.put("/:id", middleware.checkSiteAuth, function (req, res) {
             console.log(err);
         } else {
             req.flash("success", "Changes to " + updatedSite.name + " have been saved");
+            res.redirect("/sites/" + req.params.id);
+            
+        }
+    });
+});
+
+// rate
+router.put("/:id/rate", middleware.isLoggedIn, function (req, res) {
+    var score = req.body.score;
+    
+    Site.findById(req.params.id, function(err, site) {
+        if (err) {
+            console.log(err);
+        } else {
+            site.scores.push(score);
+            site.save();
+            
+            req.flash("success", "Your rating of " + site.name + " has been saved");
             res.redirect("/sites/" + req.params.id);
             
         }
