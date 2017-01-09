@@ -1,14 +1,15 @@
 <% include ../partials/header %>
 
-<div class="container">
+<div class="container-fluid header">
     <header class="jumbotron">
-        <h1>Welcome to Picturesque!</h1>
+        <h1 class="display-1">Welcome to Picturesque</h1>
         <p>Find a location for your next photoshoot</p>
         <p>
-            <a class="btn btn-primary" href="/sites/new">Add New Campground</a>
+            <a class="btn btn-primary" href="/sites/new">add a new location</a>
         </p>
     </header>
-    
+</div>
+<div class="container">
     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
         <div class="col-lg-12">
             <h3>Most Popular Sites</h3>
@@ -18,9 +19,9 @@
             <div class= "col-md-3 col-sm-6">
                 <div class="thumbnail">
                     <img src="<%= sites[i].photos[0].link %>">
-                    <div class="caption"><%= sites[i].name %></div>
+                    <h3><%= sites[i].name %></h3>
                     <p>
-                        <a href="/sites/<%= sites[i]._id %>" class="btn btn-primary btn-sm">More Info</a>
+                        <a href="/sites/<%= sites[i]._id %>" class="btn btn-default btn-sm">More Info</a>
                     </p>
                 </div>
             </div>

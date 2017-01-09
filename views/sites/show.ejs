@@ -5,21 +5,33 @@
     <div class="row">
         <!--SIDE BAR-->
         <div class="col-md-3">
-            <p class="lead">Sites</p>
-            <a class="btn btn-success btn-sm " href="/sites/<%= site._id %>/comments/new">Leave a Review</a>
-            <a class="btn btn-success btn-sm" href="/sites/<%= site._id %>/newphoto">Add Photos</a>
-            <br><br>
-            <p><%= site.rating %></p>
+            <h2><%= site.name %></h2>
             
-            <form action="/sites/<%= site._id %>/rate?_method=PUT" method="POST">
+            <p><%=site.rating%></p>
+            <% for(var i=0; i< site.rating; i++) { %>
+                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            <% } %> <br>
+            
+            <p><%= site.description %></p> <br>
+            
+            <hr>
+            
+            <form class="rating" action="/sites/<%= site._id %>/rate?_method=PUT" method="POST">
               <input type="radio" name="score" value="1"> 1
               <input type="radio" name="score" value="2"> 2
               <input type="radio" name="score" value="3"> 3
               <input type="radio" name="score" value="4"> 4
               <input type="radio" name="score" value="5"> 5
-              <br>
+              <br><br>
               <button class = "btn btn-success btn-sm">Rate Site</button>
             </form>
+            <br>
+                        
+            <a class="btn btn-success btn-sm " href="/sites/<%= site._id %>/comments/new">Leave a Review</a>
+            <a class="btn btn-success btn-sm" href="/sites/<%= site._id %>/newphoto">Add Photos</a>
+            <br><br>
+   
+             
 
         </div>
         
@@ -45,7 +57,7 @@
                       </div>
                     <% } %>
                     
-                                <!-- CONTROLS -->
+                <!-- CONTROLS -->
                 <a class="left carousel-control" href="#slideshow" role="button" data-slide="prev">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                  </a>
@@ -59,17 +71,13 @@
                 
                 <!--CAPTION-->
                 <div class="caption">
-                    <h4 class="pull-right">$10.00/night</h4>
-                    <h4><a><%= site.name %></a></h4>
-                    <div class="pull-right">
-
+                                        <div class="pull-right">
+                        <% if(currentUser && site.author.id.equals(currentUser._id)) { %>
+                            <a class="btn btn-warning btn-sm" href="/sites/<%= site._id %>/edit">Edit Site</a>
+                        <% } %>
                     </div>
                     <em><h5>Submitted By: <a href="/user/<%= site.author.id %>"><%= site.author.username %></a> </h5></em>
-    
-                    
-                    <% if(currentUser && site.author.id.equals(currentUser._id)) { %>
-                        <a class="btn btn-warning btn-sm" href="/sites/<%= site._id %>/edit">Edit Site</a>
-                    <% } %>
+
                 </div>
                 
 

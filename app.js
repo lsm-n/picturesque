@@ -68,6 +68,8 @@ app.use("/sites", photoRoutes);
 app.use("/user/:id", profileRoutes);
 app.use("/sites/:id/comments", commentRoutes);
 
+
 app.listen(process.env.PORT,process.env.IP, function() {
     console.log("The picturesque server has started running.");
 });
+

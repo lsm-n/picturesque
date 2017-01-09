@@ -1,5 +1,13 @@
+body {
+    font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+
 h1 {
     text-align: center;
+}
+
+.display-1 {
+    text-align: justify;
 }
 
 h3 {
@@ -42,8 +50,47 @@ p {
     margin: 25px auto;
 }
 
-.nav.navbar-nav.navbar-right li span a{
-    color: pink;
+.navbar-brand {
+    font-size: 25px;
+}
+
+.navbar {
+    font-family: 'Raleway';
+    margin-bottom: 0;
+    padding-bottom: 10px;
+}
+
+#brand-logo {
+    font-size: 30px;
+}
+
+#current-user {
+    color: #EEE;
     font-size: 20px;
 }
 
+.navbar-inverse .navbar-nav>li>a {
+    padding-top: 20px;
+}
+
+.jumbotron {
+    font-family: 'Raleway';
+    text-transform: lowercase;
+    margin-bottom: 0px;
+}
+
+.container {
+    padding-top: 25px;
+}
+
+.container-fluid.header {
+    padding: 0px;
+}
+
+.btn {
+    font-family: 'Raleway';
+}
+
+.rating {
+    text-align: center;
+}
