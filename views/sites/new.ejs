@@ -9,16 +9,19 @@
                         <input class="form-control" type="text" placeholder="site name" name="name">
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="text" placeholder="words" name="description">
+                        <textarea class="form-control" type="text" placeholder="site description" name="description"></textarea>
                     </div>
                     
-                    <div class="form-group">
-                        <input type="radio" name="score" value="1"> 1
-                        <input type="radio" name="score" value="2"> 2
-                        <input type="radio" name="score" value="3"> 3
-                        <input type="radio" name="score" value="4"> 4
-                        <input type="radio" name="score" value="5"> 5
-                    </div>
+                    <h3>Select a Rating</h3>
+                        <fieldset class="rate-stars new-site">
+                            <input type="radio" id="star5" name="score" value="5" /><label class = "full" for="star5"></label>
+                            <input type="radio" id="star4" name="score" value="4" /><label class = "full" for="star4"></label>
+                            <input type="radio" id="star3" name="score" value="3" /><label class = "full" for="star3"></label>
+                            <input type="radio" id="star2" name="score" value="2" /><label class = "full" for="star2"></label>
+                            <input type="radio" id="star1" name="score" value="1" /><label class = "full" for="star1"></label>
+                        </fieldset> <br>
+                    
+                    <hr>
                     
                     <h3>Add a Photo</h3>
                     <div class="form-group">
@@ -27,6 +30,9 @@
                     <div class="form-group">
                         <input class="form-control" type="text" placeholder="image caption" name="photo[caption]">
                     </div>
+
+                                        
+                
                     
                     <div class="form-group">
                         <button class="btn btn-primary btn-medium btn-default btn-block">Submit</button>

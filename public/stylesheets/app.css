@@ -92,5 +92,58 @@ p {
 }
 
 .rating {
+    margin: auto;
+}
+
+.fa {
+    color: #FFD700;
+    margin: 2px;
+}
+
+.user-interactions {
     text-align: center;
 }
+
+textarea.form-control {
+    height: 100px;
+}
+
+.show-site {
+    padding-left: 70px;
+}
+
+.new-site {
+    padding-left: 95px;
+    font-size: 1.5em;
+    letter-spacing: 4px;
+}
+
+/****** Style Star Rating Widget *****/
+
+.rate-stars { 
+  border: none;
+  float: left;
+  margin-top: -5px;
+}
+
+.rate-stars > input { display: none; } 
+.rate-stars > label:before { 
+  margin: 5px;
+  font-family: FontAwesome;
+  /*display: inline-block;*/
+  content: "\f005";
+}
+
+.rate-stars > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+.rate-stars > input:checked ~ label, /* show gold star when clicked */
+.rate-stars:not(:checked) > label:hover, /* hover current star */
+.rate-stars:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rate-stars > input:checked + label:hover, /* hover current star when changing rating */
+.rate-stars > input:checked ~ label:hover,
+.rate-stars > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rate-stars > input:checked ~ label:hover ~ label { color: #FFED85;  } 

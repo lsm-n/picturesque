@@ -7,33 +7,36 @@
         <div class="col-md-3">
             <h2><%= site.name %></h2>
             
-            <p><%=site.rating%></p>
-            <% for(var i=0; i< site.rating; i++) { %>
-                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-            <% } %> <br>
+            <% for(var i=1; i <= site.rating; i++) { %>
+                <i class="fa fa-star" aria-hidden="true"></i>
+            <% } %>
             
-            <p><%= site.description %></p> <br>
+            <% if ( (Math.round(site.rating *10)/10) % 1 >= 0.5 ) { %>
+            
+                <i class="fa fa-star-half" aria-hidden="true"></i>
+            <% } %>
+
+            <p><%= site.description %></p>
             
             <hr>
-            
-            <form class="rating" action="/sites/<%= site._id %>/rate?_method=PUT" method="POST">
-              <input type="radio" name="score" value="1"> 1
-              <input type="radio" name="score" value="2"> 2
-              <input type="radio" name="score" value="3"> 3
-              <input type="radio" name="score" value="4"> 4
-              <input type="radio" name="score" value="5"> 5
-              <br><br>
-              <button class = "btn btn-success btn-sm">Rate Site</button>
+
+        <div class="user-interactions">
+            <form action="/sites/<%= site._id %>/rate?_method=PUT" method="POST">
+                <fieldset class="rate-stars show-site">
+                    <input type="radio" id="star5" name="score" value="5" /><label class = "full" for="star5"></label>
+                    <input type="radio" id="star4" name="score" value="4" /><label class = "full" for="star4"></label>
+                    <input type="radio" id="star3" name="score" value="3" /><label class = "full" for="star3"></label>
+                    <input type="radio" id="star2" name="score" value="2" /><label class = "full" for="star2"></label>
+                    <input type="radio" id="star1" name="score" value="1" /><label class = "full" for="star1"></label>
+                </fieldset> <br>
+              <button class= "btn btn-success btn-sm">Rate Site</button>
             </form>
             <br>
-                        
+            
             <a class="btn btn-success btn-sm " href="/sites/<%= site._id %>/comments/new">Leave a Review</a>
             <a class="btn btn-success btn-sm" href="/sites/<%= site._id %>/newphoto">Add Photos</a>
-            <br><br>
-   
-             
-
         </div>
+    </div>
         
         <!--MAIN CONTENT-->
         <div class="col-md-9">
