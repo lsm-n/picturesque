@@ -1,9 +1,6 @@
 <% include ../partials/header %>
 
 <div class="container">
-    
-
-    
     <div class="row">
             <!--SIDEBAR-->
             
@@ -12,6 +9,8 @@
             <img class="img-thumbnail" src="<%= user.profilePicture %>"> <hr>
             <p><%= user.description %></p>
             
+            <hr>
+            
             <% if(currentUser && user._id.equals(currentUser._id)) { %>
                 <a class="btn btn-warning btn-sm" href="/user/<%= user._id %>/edit">Edit Site</a>
             <% } %>
@@ -19,11 +18,13 @@
         </div>
 
         <div class="col-md-8">
-            
                 <% photos.forEach(function(photo) { %>
                     <div class="thumbnail">
                         <img src="<%= photo.link %>">
-                        <div class="thumbnail-caption"><%= photo.caption %></div>
+                        <div class="caption">
+                            <%= %>
+                            <%= photo.caption %>
+                        </div>
                     </div>
                 <% }) %>
 

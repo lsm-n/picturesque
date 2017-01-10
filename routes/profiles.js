@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router({mergeParams: true});
 var User = require("../models/user");
+var Site = require("../models/site");
 var Photo = require("../models/photo");
 var middleware = require("../middleware");
 
@@ -10,10 +11,26 @@ router.get("/", function(req, res){
         if (err) {
             console.log(err);
         } else {
+            // found all photos by this author
             Photo.find({"author.id": req.params.id}, function(err, photos) {
                 if (err) {
                     console.log(err);
                 } else {
+                    
+                    var siteInfo = new Array();
+                    
+                    photos.forEach(function(photo) {
+                        Site.find({photos: {$in: [photo._id]}}, function(err, sites) {
+                            if (err) { 
+                                console.log(err);
+                            } else {
+                                sites.forEach(function(site) {
+                                    siteInfo.push({"name": site.name, "id": site._id});
+                                });
+                            }
+                        });
+ 
+                    });
                     res.render("users/profile", {user: user, photos: photos});
                 }
             });
