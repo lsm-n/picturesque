@@ -9,7 +9,8 @@ var middleware = require("../middleware"); // automatically requires index.js
 router.get("/:id/newphoto", middleware.isLoggedIn, function( req, res) {
     Site.findById(req.params.id, function(err, site) {
         if(err) {
-            console.log(err);
+            req.flash("error", "This site could not be found");
+            res.redirect("/sites");
         } else {
             res.render("photos/new", {site: site});
         }
@@ -19,13 +20,15 @@ router.get("/:id/newphoto", middleware.isLoggedIn, function( req, res) {
 router.post("/:id", middleware.isLoggedIn, function (req, res) {
     Site.findById(req.params.id, function(err, site) {
         if (err) {
-            console.log(err);
+            req.flash("error", "This site could not be found");
+            res.redirect("/sites");
         } else {
             var newPhoto = req.body.photo;
             
             Photo.create(newPhoto, function(err, photo) {
                 if (err) {
-                    console.log(err);
+                    req.flash("error", "This photo could not be created");
+                    res.redirect("/sites/" + req.params.id);
                 } else {
                     photo.author.username = req.user.username;
                     photo.author.id = req.user._id;
@@ -34,7 +37,7 @@ router.post("/:id", middleware.isLoggedIn, function (req, res) {
                     site.photos.push(photo);
                     site.save();
                     
-                    //console.log(site);
+                    req.flash("success", "Your photo has been added to " + site.name);
                     res.redirect("/sites/" + req.params.id);
                     
                 }

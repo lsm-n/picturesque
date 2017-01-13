@@ -9,7 +9,7 @@ var middleware = require("../middleware"); // automatically requires index.js
 router.get("/new", middleware.isLoggedIn, function(req, res) {
    Site.findById(req.params.id, function(err, site){
        if (err) {
-            req.flash("error", "Site could not be found");
+            req.flash("error", "This site could not be found");
             res.redirect("/sites");
            console.log(err);
        } else {
@@ -22,17 +22,16 @@ router.get("/new", middleware.isLoggedIn, function(req, res) {
 router.post("/", middleware.isLoggedIn, function(req, res) {
     Site.findById(req.params.id, function(err, site){
        if (err) {
-           console.log(err);
+            req.flash("error", "This site could not be found");
+            res.redirect("/sites");
        } else { // add new comment to correct campground
            var newComment = req.body.comment;
            Comment.create(newComment, function(err, comment) {
                if (err) {
-                   req.flash("error", "Review could not be created");
-                   res.redirect("/campgrounds/" + req.params.id);
+                   req.flash("error", "Your review could not be created");
+                   res.redirect("/sites/" + req.params.id);
                    console.log(err);
                } else {
-                   // add username and id to comment
-                   // req.user has username and id (we know this because of the middleware!)
                    comment.author.username = req.user.username;
                    comment.author.id = req.user._id;
                    // save comment
@@ -56,7 +55,8 @@ router.get("/:comment_id/edit", middleware.checkCommentAuth, function(req, res) 
     var comment_id = req.params.comment_id;
     Comment.findById(comment_id, function(err, comment) {
         if (err) {
-            console.log(err);
+            req.flash("error", "This review could not be found");
+            res.redirect("/sites/" + req.params.id);
         } else {
             res.render("comments/edit", {site_id: site_id, comment: comment});
         }
@@ -70,7 +70,8 @@ router.put("/:comment_id", middleware.checkCommentAuth, function(req, res) {
     var site_id = req.params.id;
     Comment.findByIdAndUpdate(comment_id, req.body.comment, function (err, comment) {
         if (err) {
-            console.log(err);
+            req.flash("error", "Your review could not be updated");
+            res.redirect("/sites/" + req.params.id);
         } else {
             req.flash("success", "Your review has been updated");
             res.redirect("/sites/" + site_id);
@@ -86,7 +87,8 @@ router.delete("/:comment_id", middleware.checkCommentAuth, function(req, res) {
     
     Comment.findByIdAndRemove(comment_id, function (err) {
         if (err) {
-            console.log(err);
+            req.flash("error", "This review could not be deleted");
+            res.redirect("/sites/" + req.params.id);
         } else {
             req.flash("success", "Your review has been deleted");
             res.redirect("/sites/" + site_id);

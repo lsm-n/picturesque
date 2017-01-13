@@ -5,8 +5,8 @@ var passport = require("passport");
 
 // homepage redirect 
 router.get("/", function(req, res) {
-    res.redirect("/sites");
-    //res.render("home");
+    //res.redirect("/sites");
+    res.render("home");
 });
 
 // register

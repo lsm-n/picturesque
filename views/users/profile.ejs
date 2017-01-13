@@ -18,15 +18,17 @@
         </div>
 
         <div class="col-md-8">
-                <% photos.forEach(function(photo) { %>
+                <% for (var i = 0; i < photos.length; i++) { %>
                     <div class="thumbnail">
-                        <img src="<%= photo.link %>">
+                        <img src="<%= photos[i].link %>">
                         <div class="caption">
-                            <%= %>
-                            <%= photo.caption %>
+                            <%= photos[i].caption %>
+                            <div class="pull-right">
+                                <p><a href="/sites/<%= site_ids[i] %>">(<%= site_names[i] %>)</a></p>
+                            </div>
                         </div>
                     </div>
-                <% }) %>
+                <% } %>
 
         </div>
     </div>

@@ -53,7 +53,7 @@ h1 {
     left: 0;
     z-index: 0;
     opacity: 0;
-    animation: imageAnimation 50s linear infinite;
+    animation: imageAnimation 28s linear infinite;
 }
 
 .slideshow li:nth-child(1){
@@ -62,22 +62,22 @@ h1 {
 
 .slideshow li:nth-child(2){
     background-image: url(http://68.media.tumblr.com/172401ec4f19b9fedfcc62ad6ff71708/tumblr_nny9yemQOG1rwhluao1_1280.png);
-    animation-delay: 10s;
+    animation-delay: 7s;
 }
 
 .slideshow li:nth-child(3){
     background-image: url(http://68.media.tumblr.com/313f5ccb316a4301e5f0ba82afb27f39/tumblr_ntzu5zG8LB1rwhluao1_1280.png);
-    animation-delay: 20s;
+    animation-delay: 14s;
 }
 
 .slideshow li:nth-child(4){
     background-image: url(http://68.media.tumblr.com/bb8f2555a6e1ba52039bde1fa4e677d0/tumblr_nufkclIlsP1rwhluao1_1280.png);
-    animation-delay: 30s;
+    animation-delay: 21s;
 }
 
 .slideshow li:nth-child(5){
     background-image: url(http://68.media.tumblr.com/ac42139e73245113f47be4fba028560e/tumblr_nupp28QINH1rwhluao1_1280.png);
-    animation-delay: 40s;
+    animation-delay: 28s;
 }
 
 /*what we want to happen at various key frames*/
