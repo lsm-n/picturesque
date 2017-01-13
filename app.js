@@ -28,7 +28,8 @@ var Photo = require("./models/photo");
 //seedDB(); // calling seedDB function
 
 //connects to mongoDB
-mongoose.connect("mongodb://localhost/picturesque");
+//mongoose.connect("mongodb://localhost/picturesque");
+mongoose.connect("mongodb://lsm-n:pic1234@ds155428.mlab.com:55428/picturesque");
 mongoose.Promise = global.Promise;
 
 app.use(flash());
