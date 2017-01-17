@@ -8,7 +8,7 @@ var middleware = require("../middleware");
 
 //user profile
 router.get("/", function(req, res){
-    User.findById(req.params.id).populate("photos").exec(function(err, user) {
+    User.findById(req.params.id).exec(function(err, user) {
         if (err) {
             req.flash("error", "This user could not be found");
             res.redirect("/sites");
@@ -22,6 +22,9 @@ router.get("/", function(req, res){
                     var site_names = [];
                     var site_ids = [];
                     var photosProcessed = 0;
+                    if (photos == "") {
+                        res.render("users/profile", {user: user, photos: ""});
+                    }
                     photos.forEach(function(photo) {
                         Site.find({photos: mongoose.Types.ObjectId(photo._id)}, function(err, site) {
                             if (err) {
