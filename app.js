@@ -29,8 +29,6 @@ var Photo = require("./models/photo");
 
 //connects to mongoDB
 mongoose.connect(process.env.DATABASEURL);
-//mongoose.connect("mongodb://lsm-n:pic1234@ds155428.mlab.com:55428/picturesque");
-
 mongoose.Promise = global.Promise;
 
 app.use(flash());
