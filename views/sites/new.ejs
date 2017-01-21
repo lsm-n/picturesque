@@ -6,10 +6,10 @@
             <div class="form-block">
                 <form action="/sites" method="POST">
                     <div class="form-group">
-                        <input class="form-control" type="text" placeholder="site name" name="name">
+                        <input class="form-control" type="text" placeholder="site name" name="name" required>
                     </div>
                     <div class="form-group">
-                        <textarea class="form-control" type="text" placeholder="site description" name="description"></textarea>
+                        <textarea class="form-control" type="text" placeholder="site description" name="description" required></textarea>
                     </div>
                     
                     <h3>Select a Rating</h3>
@@ -20,12 +20,11 @@
                             <input type="radio" id="star2" name="score" value="2" /><label class = "full" for="star2"></label>
                             <input type="radio" id="star1" name="score" value="1" /><label class = "full" for="star1"></label>
                         </fieldset> <br>
-                    
                     <hr>
                     
                     <h3>Add a Photo</h3>
                     <div class="form-group">
-                        <input class="form-control" type="text" placeholder="image url" name="photo[link]">
+                        <input class="form-control" type="text" placeholder="image url" name="photo[link]" required>
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="text" placeholder="caption" name="photo[caption]">

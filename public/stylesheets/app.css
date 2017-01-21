@@ -50,18 +50,31 @@ p {
     margin: 25px auto;
 }
 
+.navbar-inverse {
+    font-family: 'Raleway';
+    padding: 10px 0 10px 0;
+}
+
 .navbar-brand {
-    font-size: 25px;
+    float: left;
+    height: 50px;
+    padding: 5px 15px;
+    font-size: 30px;
+    line-height: 30px;
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
 }
 
 .navbar {
-    font-family: 'Raleway';
-    margin-bottom: 0;
-    padding-bottom: 10px;
+    border-radius: 0px;
+    margin-bottom: 0px;
 }
 
-#brand-logo {
-    font-size: 30px;
+.navbar-form {
+    padding: 0px;
+    margin-left: -15px;
 }
 
 #current-user {
@@ -69,8 +82,8 @@ p {
     font-size: 20px;
 }
 
-.navbar-inverse .navbar-nav>li>a {
-    padding-top: 20px;
+#current-user:hover {
+    background-color: black;
 }
 
 .jumbotron {

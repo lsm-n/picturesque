@@ -1,12 +1,26 @@
 var express = require("express");
 var router = express.Router();
 var User = require("../models/user");
+var Site = require("../models/site");
 var passport = require("passport");
 
 // homepage redirect 
 router.get("/", function(req, res) {
-    //res.redirect("/sites");
-    res.render("home");
+    res.redirect("/sites");
+    //res.render("home");
+});
+
+// search
+router.get("/search", function(req, res) {
+    var regex = new RegExp(req.query.q, 'i');  // 'i' makes query non case-sensitive
+    Site.find({name: regex}).populate("photos").exec(function(err, foundSites) {
+        if (err || foundSites == "") {
+            req.flash("error", "Could not find any sites named \'" + req.query.q + "\'");
+            res.redirect("/sites");
+        } else {
+            res.render("results.ejs", {sites: foundSites});
+        }
+    });
 });
 
 // register

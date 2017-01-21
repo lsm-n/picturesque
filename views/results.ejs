@@ -1,0 +1,35 @@
+<% include partials/header %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+            <h3><%= sites.length %> Results Found</h3><br>
+            <% sites.forEach(function(site){ %>
+                
+                <div class="thumbnail">
+                    <h4><a href="/sites/<%= site._id %>"><%= site.name %></a>
+                    <div class="pull-right">
+                        <% for(var i=1; i <= site.rating; i++) { %>
+                            <i class="fa fa-star" aria-hidden="true"></i>
+                        <% } %>
+            
+                        <% if ( (Math.round(site.rating *10)/10) % 1 >= 0.5 ) { %>
+                            <i class="fa fa-star-half" aria-hidden="true"></i>
+                        <% } %>
+                    </div>
+                    </h4>
+                    <img src="<%= site.photos[0].link %>">
+                    <div class="caption">
+                        <p><%= site.description %></p>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<% include partials/footer %>
