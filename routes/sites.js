@@ -28,11 +28,12 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
    var description = req.body.description;
    var rating = req.body.score; //when site is first creating, rating is the initial score
    var score = req.body.score;
+   var location = req.body.location;
    var author = {
                 id: req.user.id,
                 username: req.user.username
             };
-   var newSite = {name: name, description: description, rating: rating, author: author};
+   var newSite = {name: name, description: description, rating: rating, location: location, author: author};
    
    if (rating == null) {
        req.flash("error", "Please remember to select an initial rating the site");

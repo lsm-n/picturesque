@@ -5,6 +5,7 @@ var siteSchema = new mongoose.Schema({
     description: String,
     rating: Number,
     scores: [Number],
+    location: String,
     author: {
         id: {
             type: mongoose.Schema.Types.ObjectId,
